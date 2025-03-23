@@ -1,6 +1,6 @@
 import pathlib
 from dataclasses import dataclass
-import  torch
+import torch
 
 # Base project directory (two levels up from config.py)
 def get_device():
@@ -23,7 +23,7 @@ class Config:
     split_file_val: pathlib.Path = data_dir / "splits" / "val.txt"
 
     # Model
-    num_classes: int = 1  # Binary segmentation by default
+    num_classes: int = 1
     pretrained: bool = True
 
     # Training

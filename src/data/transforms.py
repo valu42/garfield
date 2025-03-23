@@ -55,21 +55,13 @@ def get_transforms(
             A.Resize(height=target_size, width=target_size),
         ]
 
-        # Grayscale transform that can be enabled/disabled
-        grayscale_transforms = []
-        if apply_grayscale:
-            grayscale_transforms = [
-                A.ToGray(p=grayscale_prob),
-            ]
-
-        # Normalization and tensor conversion
         final_transforms = [
             A.Normalize(mean=mean, std=std),
             ToTensorV2(),
         ]
 
         # Combine all transforms
-        transforms = A.Compose(base_transforms + grayscale_transforms + final_transforms)
+        transforms = A.Compose(base_transforms + final_transforms)
     else:
         # Validation transforms (no augmentation, just resize, normalize and convert)
         transforms = A.Compose([
@@ -98,7 +90,7 @@ def get_training_transforms(
         mean: Mean values for normalization
         std: Standard deviation values for normalization
         target_size: Target size for resizing (square images)
-        apply_grayscale: Whether to apply grayscale transformation
+        apply_grayscale: Whether to apply grayscale transformatiodata_preparationn
         grayscale_prob: Probability of applying grayscale transformation
 
     Returns:

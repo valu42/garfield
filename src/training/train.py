@@ -7,7 +7,6 @@ from torch.optim import AdamW
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from src.models.unet152 import build_unet
-from src.models.attention_unet import build_attention_unet
 from src.models.swin import build_swin_large_unet
 from src.models.swin2 import build_swin2_large_unet
 from src.data.dataset import Dataset
@@ -97,16 +96,10 @@ def main():
     )
 
     # Create model
-    #model = build_swin2_large_unet(
-    #   img_size = 256,
-    #   num_classes=1,
-    #   pretrained=True
-    #)
-
-    model = build_unet152(
-        in_channels = 6,
-        skip_channels: int,
-        out_channels: int,
+    model = build_swin2_large_unet(
+        img_size = 256,
+        num_classes=1,
+        pretrained=True
     )
 
     # Define loss function
