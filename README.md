@@ -45,16 +45,18 @@ This project uses Poetry for dependency management. To install and set up the pr
 
 1. **Organize your dataset** in the following structure:
 data/
-├── train/
-│   ├── images/        # Contains image_{id}.png files
-│   └── masks/         # Contains corresponding image_{id}.png files with the same names
+- train/
+- - images/        # Contains image_{id}.png files
+- - - masks/         # Contains corresponding image_{id}.png files with the same names
 
 2. **Run the data splitting script** with the following command: python -m src.data.data_preparation.create_split
 
 3. **Pick the model you want to train**: Add some of these lines to the train.py where there'sc urrently the build_swin2_large_unet function call:
 
 model = build_unet(num_classes=1, pretrained=True)                   # ResNet152 UNet
+
 model = build_swin_large_unet(img_size=256, num_classes=1, pretrained=True)  # Swin Transformer
+
 model = build_swin2_large_unet(img_size=256, num_classes=1, pretrained=True) # Swin Transformer V2
 
 4. **Run the training script with the following command**: poetry run python -m src.training.train
